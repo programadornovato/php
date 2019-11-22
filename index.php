@@ -1,28 +1,20 @@
-<?php
-    /*
-    Author: eugenio
-    Author page: programadornovato.com
-    Date:
-    */
-
-    //Con este codigo se muestra en el navegado un saludo
-    //echo "Hola mundo desde index.php";
-
-    /*
-    Esto es un comentario
-    Esto tambien 
-    y aqui hay mas cometarios
-    */
-    /*
-    $paginaWeb="programadornovato.com";
-    $paginaWeb=55;
-    $paginaWeb=$paginaWeb+2;
-    echo $paginaWeb;
-    */
-    $nombre="eugenio";
-    echo 'Humano tu nombre es ',$nombre,5,1,"</br>";
-
-    print 'Humano tu nombre es '.$nombre;
-
-
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Curso PHP</title>
+</head>
+<body>
+    <?php
+    // Include no tira el programa
+    include_once "lib.php";
+    // require si tira el programa
+    require_once "lib.php";
+    echo "Hola humano saludos </br>";
+    echo "desde php </br>";
+    desdeAqui();    
+    ?>
+</body>
+</html>
