@@ -8,13 +8,11 @@
 </head>
 <body>
     <?php
-    // Include no tira el programa
-    include_once "lib.php";
-    // require si tira el programa
-    require_once "lib.php";
-    echo "Hola humano saludos </br>";
-    echo "desde php </br>";
-    desdeAqui();    
+    include "lib.php";
+    $chancla="Si te alcanzo</br>";
+    cambioAlcance();
+    echo $chancla;
+    echo $_SERVER['HTTP_HOST'];
     ?>
 </body>
 </html>
