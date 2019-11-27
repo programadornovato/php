@@ -8,19 +8,36 @@
     function operacionesMat($operador='',$num1=0,$num2=0)
     {
         if ($operador == 'suma') {
-            echo 'El resultado de la operacion es: ' . ($num1 + $num2);
+            $resultado=$num1 + $num2;
+            echo 'El resultado de la operacion es: ' . $resultado;
         }
         if ($operador == 'resta') {
-            echo 'El resultado de la operacion es: ' . ($num1 - $num2);
+            $resultado=$num1 - $num2;
+            echo 'El resultado de la operacion es: ' . $resultado;
         }
         if ($operador == 'multiplicacion') {
-            echo 'El resultado de la operacion es: ' . ($num1 * $num2);
+            $resultado=$num1 * $num2;
+            echo 'El resultado de la operacion es: ' . $resultado;
         }
         if ($operador == 'divicion') {
-            echo 'El resultado de la operacion es: ' . ($num1 / $num2);
+            $resultado=$num1 / $num2;
+            echo 'El resultado de la operacion es: ' . $resultado;
         }
         if ($operador == 'modulo') {
-            echo 'El resultado de la operacion es: ' . ($num1 % $num2);
+            $resultado=$num1 % $num2;
+            echo 'El resultado de la operacion es: ' . $resultado;
+        }
+        if ($operador == 'incremento') {
+            $resultado=++$num1;
+            echo 'El resultado de la operacion es: ' . $resultado;
+        }
+        if ($operador == 'decremento') {
+            $resultado=--$num1;
+            echo 'El resultado de la operacion es: ' . $resultado;
+        }
+        if ($operador == 'exponencial') {
+            $resultado=$num1**$num2;
+            echo 'El resultado de la operacion es: ' . $resultado;
         }
         if ($operador == '') {
             echo 'Humano, debes de seleccionar un operador matematico ';

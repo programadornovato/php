@@ -35,6 +35,9 @@ require_once "lib.php";
                             <option value="multiplicacion" <?php if ($operador == 'multiplicacion') echo "selected='selected'"; ?>>Multiplicacion</option>
                             <option value="divicion" <?php if ($operador == 'divicion') echo "selected='selected'"; ?>>Divicion</option>
                             <option value="modulo" <?php if ($operador == 'modulo') echo "selected='selected'"; ?>>Modulo</option>
+                            <option value="incremento" <?php if ($operador == 'incremento') echo "selected='selected'"; ?>>Incremento</option>
+                            <option value="decremento" <?php if ($operador == 'decremento') echo "selected='selected'"; ?>>Decremento</option>
+                            <option value="exponencial" <?php if ($operador == 'exponencial') echo "selected='selected'"; ?>>Exponencial</option>
                         </select>
                     </div>
                     <button type="submit" name="enviar" value="enviar" class="btn btn-primary">Enviar</button>
