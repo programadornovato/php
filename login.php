@@ -33,15 +33,8 @@
                 if(isset($_POST['enviar'])){
                     $email=$_POST['email'] ?? '';
                     $pass=$_POST['pass'] ?? '';
-                    if($email=='info@programadornovato.com' && $pass=='123456' ){
-                        ?>
-                        <div class="alert alert-primary" role="alert">Simon chavo ya entraste</div>
-                        <?php
-                    }else{
-                        ?>
-                        <div class="alert alert-danger" role="alert">Nel no pasas</div>
-                        <?php
-                    }
+
+                    echo ($email=='info@programadornovato.com'  &&  $pass=='123456') ? alerta('Simon chavo ya entraste','primary') : alerta('Nel no pasas','danger');
                 }
             ?>
             </div>
@@ -50,3 +43,8 @@
 </body>
 
 </html>
+<?php
+    function alerta($texto,$tipo){
+        return "<div class=\"alert alert-$tipo\" role=\"alert\">$texto</div>";
+    }
+?>
