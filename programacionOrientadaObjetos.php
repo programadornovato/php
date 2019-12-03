@@ -23,6 +23,27 @@
             $this->largo=$largo;
             $this->color=$color;
         }
+        function arrancar(){
+            $this->velocidad=0;
+        }
+        function acelerar($aceleracion){
+            $this->velocidad+=$aceleracion;
+        }
+        function giro($direccion){
+            if($direccion=="derecha"){
+                $this->angulo+=45;
+                if($this->angulo>=360){
+                    $this->angulo=0;
+                }
+            }
+            if($direccion=="izquierda"){
+                $this->angulo-=45;
+                if($this->angulo<=-360){
+                    $this->angulo=0;
+                }
+            }
+
+        }
         var $marca;
         var $modelo;
         var $alto;
@@ -35,8 +56,28 @@
     $lamborgini1 = new carro("Lamborgini",2020);
     $bmw1 = new carro("BMW",2020,1.3,4,"Rojo");
     $cybertruck1 = new carro("Tesla","Cyber truck 2021");
-    echo "color del lambo=".$lamborgini1->color;
+
+    $lamborgini1->arrancar();
+    echo "Velocidad de lamborgini=".$lamborgini1->velocidad."<br>";
+    $lamborgini1->acelerar(20);
+    echo "Velocidad de lamborgini=".$lamborgini1->velocidad."<br>";
+    $lamborgini1->acelerar(50);
+    echo "Velocidad de lamborgini=".$lamborgini1->velocidad."<br>";
+    $lamborgini1->acelerar(-10);
+    echo "Velocidad de lamborgini=".$lamborgini1->velocidad."<br>";
+
+    $lamborgini1->giro("derecha");
+    $lamborgini1->giro("derecha");
+    $lamborgini1->giro("derecha");
+    $lamborgini1->giro("derecha");
+    $lamborgini1->giro("derecha");
+    $lamborgini1->giro("derecha");
+    $lamborgini1->giro("derecha");
+    $lamborgini1->giro("derecha");
+    $lamborgini1->giro("derecha");
+    echo "Angulo del lamborgini=".$lamborgini1->angulo."<br>";
     ?>
+
 </body>
 
 </html>
