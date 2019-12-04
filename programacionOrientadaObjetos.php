@@ -9,75 +9,82 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .card-img-top{
+            width: 100%;
+            height: 10vw;
+            object-fit: over;
+        }
+    </style>
 </head>
 
 <body>
     <?php
-    class carro
-    {
-        function __construct($marca,$modelo,$alto=1.5,$largo=3,$color="Blanco")
-        {
-            $this->marca=$marca;
-            $this->modelo=$modelo;
-            $this->alto=$alto;
-            $this->largo=$largo;
-            $this->color=$color;
-        }
-        function arrancar(){
-            $this->velocidad=0;
-        }
-        function acelerar($aceleracion){
-            $this->velocidad+=$aceleracion;
-        }
-        function giro($direccion){
-            if($direccion=="derecha"){
-                $this->angulo+=45;
-                if($this->angulo>=360){
-                    $this->angulo=0;
-                }
-            }
-            if($direccion=="izquierda"){
-                $this->angulo-=45;
-                if($this->angulo<=-360){
-                    $this->angulo=0;
-                }
-            }
-
-        }
-        var $marca;
-        var $modelo;
-        var $alto;
-        var $largo;
-        var $color;
-        var $velocidad;
-        var $angulo;
-        var $imagen;
-    }
-    $lamborgini1 = new carro("Lamborgini",2020);
-    $bmw1 = new carro("BMW",2020,1.3,4,"Rojo");
-    $cybertruck1 = new carro("Tesla","Cyber truck 2021");
-
-    $lamborgini1->arrancar();
-    echo "Velocidad de lamborgini=".$lamborgini1->velocidad."<br>";
-    $lamborgini1->acelerar(20);
-    echo "Velocidad de lamborgini=".$lamborgini1->velocidad."<br>";
-    $lamborgini1->acelerar(50);
-    echo "Velocidad de lamborgini=".$lamborgini1->velocidad."<br>";
-    $lamborgini1->acelerar(-10);
-    echo "Velocidad de lamborgini=".$lamborgini1->velocidad."<br>";
-
-    $lamborgini1->giro("derecha");
-    $lamborgini1->giro("derecha");
-    $lamborgini1->giro("derecha");
-    $lamborgini1->giro("derecha");
-    $lamborgini1->giro("derecha");
-    $lamborgini1->giro("derecha");
-    $lamborgini1->giro("derecha");
-    $lamborgini1->giro("derecha");
-    $lamborgini1->giro("derecha");
-    echo "Angulo del lamborgini=".$lamborgini1->angulo."<br>";
+    include_once "class/carro.php";
+    $lamborgini1 = new carro("Lamborgini", 2020);
+    $lamborgini1->setImage("images/lambo.jpeg");
+    $bmw1 = new carro("BMW", 2020, 1.3, 4, "Rojo");
+    $bmw1->setImage("images/bmw.jpeg");
+    $cybertruck1 = new carro("Tesla", "Cyber truck 2021");
+    $cybertruck1->setImage("images/cyber.jpeg");
     ?>
+    <div class="container mt-3">
+        <div class="row">
 
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo $lamborgini1->imagen; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $lamborgini1->marca."".$lamborgini1->modelo; ?></h5>
+                        <p class="card-text">
+                            <?php 
+                            echo "Largo: ".$lamborgini1->largo."<br>";
+                            echo "Alto: ".$lamborgini1->alto."<br>";
+                            echo "Color: ". $lamborgini1->color."<br>";
+                            ?>
+                        </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo $bmw1->imagen; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $bmw1->marca."".$bmw1->modelo; ?></h5>
+                        <p class="card-text">
+                            <?php 
+                            echo "Largo: ".$bmw1->largo."<br>";
+                            echo "Alto: ".$bmw1->alto."<br>";
+                            echo "Color: ". $bmw1->color."<br>";
+                            ?>
+                        </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo $cybertruck1->imagen; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $cybertruck1->marca."".$cybertruck1->modelo; ?></h5>
+                        <p class="card-text">
+                            <?php 
+                            echo "Largo: ".$cybertruck1->largo."<br>";
+                            echo "Alto: ".$cybertruck1->alto."<br>";
+                            echo "Color: ". $cybertruck1->color."<br>";
+                            ?>
+                        </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
 
 </html>
