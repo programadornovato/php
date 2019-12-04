@@ -27,8 +27,23 @@
     $bmw1->setImage("images/bmw.jpeg");
     $cybertruck1 = new carro("Tesla", "Cyber truck 2021");
     $cybertruck1->setImage("images/cyber.jpeg");
+
+    $teslaH=new hibrido("Tesla","hibrido");
+    echo "Tipo de motor=".$teslaH->motor."<br>";
+    $teslaH->setImage("images/H.jpeg");
+    $teslaH->acelerar(30);
+    echo "carga electrica=".$teslaH->cargaElectrica."<br>";
+    $teslaH->acelerar(50);
+    echo "carga electrica=".$teslaH->cargaElectrica."<br>";
+    $teslaI=new IA("Tesla","IA");
+    $teslaI->setImage("images/IA.jpg");
+    $teslaI->setDetecta("Borrachos");
+    echo "Que detecta=".$teslaI->detecta."<br>";
+
     ?>
     <div class="container mt-3">
+
+
         <div class="row">
 
             <div class="col-4">
@@ -84,6 +99,67 @@
             </div>
 
         </div>
+        
+
+        <div class="row">
+
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo $teslaH->imagen; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $teslaH->marca."".$teslaH->modelo; ?></h5>
+                        <p class="card-text">
+                            <?php 
+                            echo "Largo: ".$teslaH->largo."<br>";
+                            echo "Alto: ".$teslaH->alto."<br>";
+                            echo "Color: ". $teslaH->color."<br>";
+                            echo "Motor: ". $teslaH->motor."<br>";
+                            ?>
+                        </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo $teslaI->imagen; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $teslaI->marca."".$teslaI->modelo; ?></h5>
+                        <p class="card-text">
+                            <?php 
+                            echo "Largo: ".$teslaI->largo."<br>";
+                            echo "Alto: ".$teslaI->alto."<br>";
+                            echo "Color: ". $teslaI->color."<br>";
+                            echo "Motor: ". $teslaI->motor."<br>";
+                            echo "Detecta: ". $teslaI->detecta."<br>";
+                            ?>
+                        </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo $cybertruck1->imagen; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $cybertruck1->marca."".$cybertruck1->modelo; ?></h5>
+                        <p class="card-text">
+                            <?php 
+                            echo "Largo: ".$cybertruck1->largo."<br>";
+                            echo "Alto: ".$cybertruck1->alto."<br>";
+                            echo "Color: ". $cybertruck1->color."<br>";
+                            ?>
+                        </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </body>
 
