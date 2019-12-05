@@ -53,11 +53,48 @@ class carro
     {
         $this->imagen = $path;
     }
-    var $marca;
-    var $modelo;
-    var $alto;
-    var $largo;
-    var $color;
+    function setAlto($alto){
+        if($alto>=1 && $alto <= 2){
+            $this->alto=$alto;
+            echo "Tu nueva altura es $this->alto <br>";
+        }
+        else{
+            echo "Parametro de altura no aceptado<br>";
+        }
+    }
+    function setLargo($largo){
+        if($largo>=2 && $largo <= 4){
+            $this->$largo=$$largo;
+            echo "Tu nuevo $largo es $this->$largo <br>";
+        }
+        else{
+            echo "Parametro de $largo no aceptado<br>";
+        }
+    }
+    function setColor($color){
+        if($color=="Blanco" || $color=="Azul" || $color=="Rojo" ){
+            $this->color=$color;
+            echo "Tu nuevo color es $this->color <br>";
+        }
+        else{
+            echo "Parametro de color no aceptado<br>";
+        }
+    }
+    /*
+    function __set($name, $value)
+    {
+        $this->$name=$value;
+    }
+    */
+    function __get($name)
+    {
+        return $this->$name;
+    }
+    protected $marca;
+    protected $modelo;
+    protected $alto;
+    protected $largo;
+    protected $color;
     var $velocidad;
     var $angulo;
     var $imagen;

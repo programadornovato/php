@@ -34,11 +34,7 @@
     $teslaI->setImage("images/IA.jpg");
     $teslaI->setDetecta("Borrachos");
 
-    //$teslaI->acceso=true;
-    $teslaI->arrancar("123");
-    $teslaI->acelerar(20);
-    $teslaI->giro("derecha");
-
+    $teslaI->setAlto(1.8);
     ?>
     <div class="container mt-3">
 
