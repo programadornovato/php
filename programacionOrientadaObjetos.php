@@ -29,16 +29,15 @@
     $cybertruck1->setImage("images/cyber.jpeg");
 
     $teslaH=new hibrido("Tesla","hibrido");
-    echo "Tipo de motor=".$teslaH->motor."<br>";
     $teslaH->setImage("images/H.jpeg");
-    $teslaH->acelerar(30);
-    echo "carga electrica=".$teslaH->cargaElectrica."<br>";
-    $teslaH->acelerar(50);
-    echo "carga electrica=".$teslaH->cargaElectrica."<br>";
     $teslaI=new IA("Tesla","IA");
     $teslaI->setImage("images/IA.jpg");
     $teslaI->setDetecta("Borrachos");
-    echo "Que detecta=".$teslaI->detecta."<br>";
+
+    //$teslaI->acceso=true;
+    $teslaI->arrancar("123");
+    $teslaI->acelerar(20);
+    $teslaI->giro("derecha");
 
     ?>
     <div class="container mt-3">

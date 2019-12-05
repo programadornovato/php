@@ -9,27 +9,44 @@ class carro
         $this->largo = $largo;
         $this->color = $color;
     }
-    function arrancar()
+    function arrancar($pass)
     {
-        $this->velocidad = 0;
+        if($pass=="123" || $this->acceso==true){
+            $this->acceso=true;
+            $this->velocidad = 0;
+        }
+        else{
+            $this->acceso=false;
+            echo "Error de acceso en arrancar<br>";
+        }
     }
     function acelerar($aceleracion)
     {
-        $this->velocidad += $aceleracion;
+        if($this->acceso==true){
+           $this->velocidad += $aceleracion;
+        }
+        else{
+            echo "Error de acceso en acelerar<br>";
+        }
     }
     function giro($direccion)
     {
-        if ($direccion == "derecha") {
-            $this->angulo += 45;
-            if ($this->angulo >= 360) {
-                $this->angulo = 0;
+        if($this->acceso==true){
+            if ($direccion == "derecha") {
+                $this->angulo += 45;
+                if ($this->angulo >= 360) {
+                    $this->angulo = 0;
+                }
+            }
+            if ($direccion == "izquierda") {
+                $this->angulo -= 45;
+                if ($this->angulo <= -360) {
+                    $this->angulo = 0;
+                }
             }
         }
-        if ($direccion == "izquierda") {
-            $this->angulo -= 45;
-            if ($this->angulo <= -360) {
-                $this->angulo = 0;
-            }
+        else{
+            echo "Error de acceso al girar<br>";
         }
     }
     function setImage($path)
@@ -44,6 +61,7 @@ class carro
     var $velocidad;
     var $angulo;
     var $imagen;
+    protected $acceso=false;
 }
 
 class hibrido extends carro
@@ -57,8 +75,13 @@ class hibrido extends carro
     }
     function acelerar($aceleracion)
     {
-        $this->velocidad += $aceleracion;
-        $this->cargaElectrica=$this->cargaElectrica+($aceleracion/2);
+        if($this->acceso==true){
+            $this->velocidad += $aceleracion;
+            $this->cargaElectrica=$this->cargaElectrica+($aceleracion/2);
+        }
+        else{
+            echo "Error de acceso al acelerar hibrido<br>";
+        }
     }
 }
 
