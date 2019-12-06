@@ -34,7 +34,7 @@
     $teslaI->setImage("images/IA.jpg");
     $teslaI->setDetecta("Borrachos");
 
-    $teslaI->setAlto(1.8);
+    carro::setBolsa(false,"111");
     ?>
     <div class="container mt-3">
 
@@ -51,6 +51,7 @@
                             echo "Largo: ".$lamborgini1->largo."<br>";
                             echo "Alto: ".$lamborgini1->alto."<br>";
                             echo "Color: ". $lamborgini1->color."<br>";
+                            echo "Bolsa de aire: ". $lamborgini1->getBolsa()."<br>";
                             ?>
                         </p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -69,6 +70,7 @@
                             echo "Largo: ".$bmw1->largo."<br>";
                             echo "Alto: ".$bmw1->alto."<br>";
                             echo "Color: ". $bmw1->color."<br>";
+                            echo "Bolsa de aire: ". $bmw1->getBolsa()."<br>";
                             ?>
                         </p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -86,6 +88,7 @@
                             echo "Largo: ".$cybertruck1->largo."<br>";
                             echo "Alto: ".$cybertruck1->alto."<br>";
                             echo "Color: ". $cybertruck1->color."<br>";
+                            echo "Bolsa de aire: ". $cybertruck1->getBolsa()."<br>";
                             ?>
                         </p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -109,6 +112,7 @@
                             echo "Alto: ".$teslaH->alto."<br>";
                             echo "Color: ". $teslaH->color."<br>";
                             echo "Motor: ". $teslaH->motor."<br>";
+                            echo "Bolsa de aire: ". $teslaH->getBolsa()."<br>";
                             ?>
                         </p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -129,6 +133,7 @@
                             echo "Color: ". $teslaI->color."<br>";
                             echo "Motor: ". $teslaI->motor."<br>";
                             echo "Detecta: ". $teslaI->detecta."<br>";
+                            echo "Bolsa de aire: ". $teslaI->getBolsa()."<br>";
                             ?>
                         </p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -146,6 +151,7 @@
                             echo "Largo: ".$cybertruck1->largo."<br>";
                             echo "Alto: ".$cybertruck1->alto."<br>";
                             echo "Color: ". $cybertruck1->color."<br>";
+                            echo "Bolsa de aire: ". $cybertruck1->getBolsa()."<br>";
                             ?>
                         </p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>

@@ -90,6 +90,16 @@ class carro
     {
         return $this->$name;
     }
+    static function setBolsa($estado,$pass){
+        if($pass=='111')
+            self::$bolsaAire=$estado;
+        else{
+            echo "error en pass<br>";
+        }
+    }
+    function getBolsa(){
+        return self::$bolsaAire ? "Si" : "No" ;
+    }
     protected $marca;
     protected $modelo;
     protected $alto;
@@ -99,6 +109,7 @@ class carro
     var $angulo;
     var $imagen;
     protected $acceso=false;
+    static protected $bolsaAire=false;
 }
 
 class hibrido extends carro
