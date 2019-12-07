@@ -13,34 +13,39 @@
 
 <body>
     <?php
-        /*
-        //ARRAY INDEXADO
-        $autos[]="Roadster";
-        $autos[]="Model X";
-        $autos[]="Model S";
-        $autos[]="Cybertruck";
-        sort($autos);
-        //array_push($autos,"Model Y","Model 3");
-        foreach($autos as $llave=>$elemento){
-            echo $llave." ".$elemento."<br>";
-        }
-        */
-        
         //ARRAY ASOCIATIVO
         $autos=array(
-            "Roadster"=>50,
-            "Model X"=>40,
-            "Model S"=>20,
-            "Cyberruck"=>80
+            "Roadster"=>array(
+                "precio"=>50,
+                "puertas"=>4,
+                "imagen"=>"roadster.jpg"
+            ),
+            "Model X"=>array(
+                "precio"=>60,
+                "puertas"=>5,
+                "imagen"=>"modelX.jpg"
+            ),
+            "Model S"=>array(
+                "precio"=>70,
+                "puertas"=>5,
+                "imagen"=>"modelS.jpg"
+            ),
+            "Cyberruck"=>array(
+                "precio"=>90,
+                "puertas"=>6,
+                "imagen"=>"cybertruck.jpg"
+            )
         );
-        
-        //echo $autos["Cyberruck"];
-        //echo is_array($autos) ? "Es un arreglo" : "No es un arreglo";
-        $autos["Model 3"]=40;
-        $autos["Model Y"]=10;
-        ksort($autos);
-        foreach ($autos as $llave => $auto){
-            echo $llave." ".$auto."<br>";
+        //var_dump($autos);
+        foreach ($autos as $modelo => $caracteristicas) {
+            echo "$modelo<br>";
+            foreach ($caracteristicas as $caracteristica => $valor) {
+                if($caracteristica=="imagen")
+                    echo "<img src='images/$valor' height='200' />";
+                else
+                    echo "&nbsp&nbsp&nbsp&nbsp$caracteristica : $valor<br>";
+            }
+            echo "<br>";
         }
         
         ?>
