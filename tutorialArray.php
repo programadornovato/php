@@ -14,39 +14,35 @@
 <body>
     <?php
         /*
-        //INDICE INDEXADO
+        //ARRAY INDEXADO
         $autos[]="Roadster";
         $autos[]="Model X";
         $autos[]="Model S";
         $autos[]="Cybertruck";
-        echo $autos[0];
+        sort($autos);
+        //array_push($autos,"Model Y","Model 3");
+        foreach($autos as $llave=>$elemento){
+            echo $llave." ".$elemento."<br>";
+        }
         */
-        /*
-        //INDICE ASOCIATIVO
-        $autos["Roadster"]=50;
-        $autos["Model X"]=40;
-        $autos["Model S"]=20;
-        $autos["Cyberruck"]=80;
-        echo $autos["Cyberruck"];
-        */
-        /*
-        //INDICE INDEXADO
-        $autos=array(
-            "Roadster",
-            "Model X",
-            "Model S",
-            "Cyberruck"
-        );
-        echo $autos[2];
-        */
-        //INDICE ASOCIATIVO
+        
+        //ARRAY ASOCIATIVO
         $autos=array(
             "Roadster"=>50,
             "Model X"=>40,
             "Model S"=>20,
             "Cyberruck"=>80
         );
-        echo $autos["Cyberruck"];
+        
+        //echo $autos["Cyberruck"];
+        //echo is_array($autos) ? "Es un arreglo" : "No es un arreglo";
+        $autos["Model 3"]=40;
+        $autos["Model Y"]=10;
+        ksort($autos);
+        foreach ($autos as $llave => $auto){
+            echo $llave." ".$auto."<br>";
+        }
+        
         ?>
 </body>
 
