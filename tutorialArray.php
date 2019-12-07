@@ -12,43 +12,33 @@
 </head>
 
 <body>
-    <?php
-        //ARRAY ASOCIATIVO
-        $autos=array(
-            "Roadster"=>array(
-                "precio"=>50,
-                "puertas"=>4,
-                "imagen"=>"roadster.jpg"
-            ),
-            "Model X"=>array(
-                "precio"=>60,
-                "puertas"=>5,
-                "imagen"=>"modelX.jpg"
-            ),
-            "Model S"=>array(
-                "precio"=>70,
-                "puertas"=>5,
-                "imagen"=>"modelS.jpg"
-            ),
-            "Cyberruck"=>array(
-                "precio"=>90,
-                "puertas"=>6,
-                "imagen"=>"cybertruck.jpg"
-            )
-        );
-        //var_dump($autos);
-        foreach ($autos as $modelo => $caracteristicas) {
-            echo "$modelo<br>";
-            foreach ($caracteristicas as $caracteristica => $valor) {
-                if($caracteristica=="imagen")
-                    echo "<img src='images/$valor' height='200' />";
-                else
-                    echo "&nbsp&nbsp&nbsp&nbsp$caracteristica : $valor<br>";
+    <div class="container mt-3">
+        <div class="row">
+
+            <?php
+            include_once "autos.php";
+            //var_dump($autos);
+            foreach ($autos as $modelo => $caracteristicas) {
+                ?>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card">
+                        <img src="images/<?php echo $caracteristicas['imagen'] ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong><?php echo $modelo; ?></strong></h5>
+                            <p class="card-text">
+                                <strong>Precio</strong> :<?php echo $caracteristicas['precio'] ?><br>
+                                <strong>Puertas</strong> :<?php echo $caracteristicas['puertas'] ?>
+                            </p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            <?php
             }
-            echo "<br>";
-        }
-        
-        ?>
+            ?>
+        </div>
+    </div>
+
 </body>
 
 </html>
