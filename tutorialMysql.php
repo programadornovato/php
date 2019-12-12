@@ -29,7 +29,23 @@
         die("Error de conexion a Mysql con el codigo: " . mysqli_connect_errno() .
             "<br>" . mysqli_connect_error());
     }
-    $sql = "SELECT `marca`, `modelo`, `anio` FROM `autos`";
+    $sql = "SELECT 
+    `id`, 
+    `nombre`, 
+    `precioCompra`, 
+    `precioVenta`, 
+    `fechaCompra`, 
+    `categoria`, 
+    `unidadesEnExistencia` 
+    
+    FROM `productos`
+    
+    WHERE 
+    unidadesEnExistencia=0
+    and
+    categoria='Carnes'
+    ;
+    ";
     $resultSet = mysqli_query($conexion, $sql);
     ?>
     <div class="container mt-5">
@@ -38,10 +54,11 @@
                 <table class="table table-striped" id="tablaAutos">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Año</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Existencia</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,10 +68,11 @@
                         while ($row = mysqli_fetch_row($resultSet)) {
                             ?>
                             <tr>
-                                <th scope="row"><?php echo $contador; ?></th>
-                                <td><?php echo $row[0]; ?></td>
+                                <th scope="row"><?php echo $row[0]; ?></th>
                                 <td><?php echo $row[1]; ?></td>
-                                <td><?php echo $row[2]; ?></td>
+                                <td><?php echo $row[3]; ?></td>
+                                <td><?php echo $row[5]; ?></td>
+                                <td><?php echo $row[6]; ?></td>
                             </tr>
                         <?php
                             $contador++;
