@@ -40,10 +40,10 @@
     
     FROM `productos`
     
-    WHERE 
-    unidadesEnExistencia=0
-    and
-    categoria='Carnes'
+--    WHERE 
+--    unidadesEnExistencia=0
+--    and
+--    categoria='Carnes'
     ;
     ";
     $resultSet = mysqli_query($conexion, $sql);
