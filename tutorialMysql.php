@@ -56,7 +56,6 @@
     $where
     ;
     ";
-    echo $sql;
     $resultSet = mysqli_query($conexion, $sql);
     ?>
     <div class="container mt-5">
@@ -107,24 +106,12 @@
                                 <th scope="col">Precio</th>
                                 <th scope="col">Categoria</th>
                                 <th scope="col">Existencia</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <?php
-                            /*
-                            echo "mysqli_fetch_row";
-                            var_dump(mysqli_fetch_row($resultSet));
-
-                            echo "mysqli_fetch_array MYSQLI_NUM<br>";
-                            var_dump( mysqli_fetch_array($resultSet,MYSQLI_NUM));
-
-                            echo "mysqli_fetch_array MYSQLI_ASSOC<br>";
-                            var_dump( mysqli_fetch_array($resultSet,MYSQLI_ASSOC));
-
-                            echo "mysqli_fetch_array MYSQLI_BOTH<br>";
-                            var_dump( mysqli_fetch_array($resultSet,MYSQLI_BOTH));
-                            */
                             while ($row = mysqli_fetch_array($resultSet,MYSQLI_ASSOC)) {
                                 ?>
                                 <tr>
@@ -133,6 +120,10 @@
                                     <td><?php echo $row['precioVenta']; ?></td>
                                     <td><?php echo $row['categoria']; ?></td>
                                     <td><?php echo $row['unidadesEnExistencia']; ?></td>
+                                    <td>
+                                        <a href="editar.php?id=<?php echo $row['id'] ?>"><i class="fa fa-edit mr-2"></i></a>
+                                        <i class="fa fa-trash text-danger"></i>
+                                    </td>
                                 </tr>
                             <?php
                             }
