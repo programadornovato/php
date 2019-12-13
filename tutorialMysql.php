@@ -35,7 +35,7 @@
     }
     $where=" where 1=1 ";
     if( empty($_GET['buscarNombre'])==false ){
-        $where=$where." and nombre='".$_GET['buscarNombre']."' ";
+        $where=$where." and nombre like'%".$_GET['buscarNombre']."%' ";
     }
     if( empty($_GET['buscarCategoria'])==false ){
         $where=$where." and categoria='".$_GET['buscarCategoria']."' ";
@@ -56,6 +56,7 @@
     $where
     ;
     ";
+    echo $sql;
     $resultSet = mysqli_query($conexion, $sql);
     ?>
     <div class="container mt-5">
@@ -111,19 +112,31 @@
                         <tbody>
 
                             <?php
-                            $contador = 1;
-                            while ($row = mysqli_fetch_row($resultSet)) {
+                            /*
+                            echo "mysqli_fetch_row";
+                            var_dump(mysqli_fetch_row($resultSet));
+
+                            echo "mysqli_fetch_array MYSQLI_NUM<br>";
+                            var_dump( mysqli_fetch_array($resultSet,MYSQLI_NUM));
+
+                            echo "mysqli_fetch_array MYSQLI_ASSOC<br>";
+                            var_dump( mysqli_fetch_array($resultSet,MYSQLI_ASSOC));
+
+                            echo "mysqli_fetch_array MYSQLI_BOTH<br>";
+                            var_dump( mysqli_fetch_array($resultSet,MYSQLI_BOTH));
+                            */
+                            while ($row = mysqli_fetch_array($resultSet,MYSQLI_ASSOC)) {
                                 ?>
                                 <tr>
-                                    <th scope="row"><?php echo $row[0]; ?></th>
-                                    <td><?php echo $row[1]; ?></td>
-                                    <td><?php echo $row[3]; ?></td>
-                                    <td><?php echo $row[5]; ?></td>
-                                    <td><?php echo $row[6]; ?></td>
+                                    <th scope="row"><?php echo $row['id']; ?></th>
+                                    <td><?php echo $row['nombre']; ?></td>
+                                    <td><?php echo $row['precioVenta']; ?></td>
+                                    <td><?php echo $row['categoria']; ?></td>
+                                    <td><?php echo $row['unidadesEnExistencia']; ?></td>
                                 </tr>
                             <?php
-                                $contador++;
                             }
+                            
                             mysqli_close($conexion);
                             ?>
                         </tbody>
