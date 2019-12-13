@@ -68,7 +68,7 @@
                                 <th scope="col"></th>
                                 <th scope="col">
                                     <div class="input-group">
-                                        <input type="text" name="buscarNombre" class="form-control" placeholder="Por nombre" value="<?php echo $_GET['buscarNombre'] ?>" >
+                                        <input type="text" name="buscarNombre" class="form-control" placeholder="Por nombre" value="<?php echo isset($_GET['buscarNombre'])?$_GET['buscarNombre']:''; ?>" >
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-secondary">
                                                 <i class="fa fa-search"></i>
@@ -79,7 +79,7 @@
                                 <th scope="col"></th>
                                 <th scope="col">
                                     <div class="input-group">
-                                        <input type="text" name="buscarCategoria" class="form-control" placeholder="Por categoria" value="<?php echo $_GET['buscarCategoria'] ?>">
+                                        <input type="text" name="buscarCategoria" class="form-control" placeholder="Por categoria" value="<?php echo isset($_GET['buscarCategoria'])?$_GET['buscarCategoria']:''; ?>">
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-secondary">
                                                 <i class="fa fa-search"></i>
@@ -90,7 +90,7 @@
                                 </th>
                                 <th scope="col">
                                     <div class="input-group">
-                                        <input type="text" name="buscarExistencia" class="form-control" placeholder="Por existencia" value="<?php echo $_GET['buscarExistencia'] ?>">
+                                        <input type="text" name="buscarExistencia" class="form-control" placeholder="Por existencia" value="<?php echo isset($_GET['buscarExistencia'])?$_GET['buscarExistencia']:''; ?>">
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-secondary">
                                                 <i class="fa fa-search"></i>
