@@ -116,7 +116,11 @@
                                             </button>
                                         </div>
                                     </div>
-
+                                </th>
+                                <th scope="col">
+                                    <a href="crear.php" class="btn btn-secondary">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
                                 </th>
                             </tr>
                             <tr>
