@@ -21,6 +21,40 @@
                 if ($conexion == false) {
                     echo "Error conexion" . mysqli_error($conexion);
                 }
+                if (isset($_GET['guardar'])) {
+                    $sql = "UPDATE productos SET
+                    nombre='" . $_GET['nombre'] . "',
+                    precioCompra='" . $_GET['precioCompra'] . "',
+                    precioVenta='" . $_GET['precioVenta'] . "',
+                    fechaCompra='" . $_GET['fechaCompra'] . "',
+                    categoria='" . $_GET['categoria'] . "',
+                    unidadesEnExistencia='" . $_GET['unidadesEnExistencia'] . "'
+                    WHERE id='" . $_GET['id'] . "';
+                    ";
+                    $resultado = mysqli_query($conexion, $sql);
+                    if ($resultado == false) {
+                        ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <strong><?php echo "Error al actualizar ".mysqli_error($conexion); ?></strong>
+                        </div>
+                    <?php
+
+                        } else {
+                            ?>
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <strong>Actualizacion exitosa</strong>
+                        </div>
+                <?php
+                    }
+                }
                 $sql = "SELECT 
                     `id`, 
                     `nombre`, 
@@ -34,8 +68,8 @@
                     ;
                     ";
 
-                $resulSet = mysqli_query($conexion,$sql);
-                $row=mysqli_fetch_array($resulSet,MYSQLI_ASSOC);
+                $resulSet = mysqli_query($conexion, $sql);
+                $row = mysqli_fetch_array($resulSet, MYSQLI_ASSOC);
                 ?>
                 <form>
                     <div class="form-group">
@@ -62,7 +96,9 @@
                         <label>Existencia</label>
                         <input type="text" class="form-control" name="unidadesEnExistencia" value="<?php echo $row['unidadesEnExistencia'] ?>">
                     </div>
+                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                     <button type="submit" name="guardar" class="btn btn-primary">Guardar</button>
+                    <a href="tutorialMysql.php" class="btn btn-warning">Cancelar</a>
                 </form>
             </div>
         </div>
@@ -75,3 +111,6 @@
 </body>
 
 </html>
+<?php
+mysqli_close($conexion);
+?>
