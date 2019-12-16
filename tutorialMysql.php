@@ -24,6 +24,7 @@
             "<br>" . mysqli_connect_error());
     }
     $where = " where 1=1 ";
+    $order="";
     if (empty($_GET['buscarNombre']) == false) {
         $where = $where . " and nombre like'%" . $_GET['buscarNombre'] . "%' ";
     }
@@ -32,6 +33,9 @@
     }
     if (empty($_GET['buscarExistencia']) == false) {
         $where = $where . " and unidadesEnExistencia='" . $_GET['buscarExistencia'] . "' ";
+    }
+    if( isset($_GET['columna'])){
+        $order=" order by  ".$_GET['columna']." ".$_GET['tipo'];
     }
     ?>
     <div class="container mt-5">
@@ -75,6 +79,7 @@
                 
                 FROM `productos`
                 $where
+                $order
                 ;
                 ";
                 $resultSet = mysqli_query($conexion, $sql);
@@ -125,8 +130,39 @@
                             </tr>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Precio</th>
+                                <th scope="col">Nombre
+                                    <div class="float-right">
+                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'nombre' && $_GET['tipo'] == 'asc') : ?>
+                                            <i class="fa fa-arrow-up text-secondary"></i>
+                                        <?php else : ?>
+                                            <a href="tutorialMysql.php?columna=nombre&tipo=asc"><i class="fa fa-arrow-up"></i></a>
+                                        <?php endif; ?>
+
+                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'nombre' && $_GET['tipo'] == 'desc') : ?>
+                                            <i class="fa fa-arrow-down text-secondary"></i>
+                                        <?php else : ?>
+                                            <a href="tutorialMysql.php?columna=nombre&tipo=desc"><i class="fa fa-arrow-down"></i></a>
+                                        <?php endif; ?>
+                                    </div>
+
+                                </th>
+                                <th scope="col" style="min-width: 120px;">Precio
+                                    <div class="float-right">
+                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'precioVenta' && $_GET['tipo'] == 'asc') : ?>
+                                            <i class="fa fa-arrow-up text-secondary"></i>
+                                        <?php else : ?>
+                                            <a href="tutorialMysql.php?columna=precioVenta&tipo=asc"><i class="fa fa-arrow-up"></i></a>
+                                        <?php endif; ?>
+
+                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'precioVenta' && $_GET['tipo'] == 'desc') : ?>
+                                            <i class="fa fa-arrow-down text-secondary"></i>
+                                        <?php else : ?>
+                                            <a href="tutorialMysql.php?columna=precioVenta&tipo=desc"><i class="fa fa-arrow-down"></i></a>
+                                        <?php endif; ?>
+                                    </div>
+
+
+                                </th>
                                 <th scope="col">Categoria</th>
                                 <th scope="col">Existencia</th>
                                 <th scope="col">Acciones</th>
@@ -145,7 +181,7 @@
                                     <td><?php echo $row['unidadesEnExistencia']; ?></td>
                                     <td>
                                         <a href="editar.php?id=<?php echo $row['id'] ?>"><i class="fa fa-edit mr-2"></i></a>
-                                        <a href="tutorialMysql.php?idBorrar=<?php echo $row['id'] ?>" class="borrar" ><i class="fa fa-trash text-danger"></i></a>
+                                        <a href="tutorialMysql.php?idBorrar=<?php echo $row['id'] ?>" class="borrar"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
                                 </tr>
                             <?php
@@ -170,12 +206,12 @@
                 'searching': false,
                 'ordering': false
             });
-            $('.borrar').click(function(evento){
+            $('.borrar').click(function(evento) {
                 evento.preventDefault();
-                var resultado=confirm('¡¡¡Esclavo!!!!¿Estas seguro que quieres borrar este registro?????');
-                if(resultado==true){
-                    var link=$(this).attr("href");
-                    window.location=link;
+                var resultado = confirm('¡¡¡Esclavo!!!!¿Estas seguro que quieres borrar este registro?????');
+                if (resultado == true) {
+                    var link = $(this).attr("href");
+                    window.location = link;
                 }
             });
         });
