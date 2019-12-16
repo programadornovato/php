@@ -24,7 +24,7 @@
             "<br>" . mysqli_connect_error());
     }
     $where = " where 1=1 ";
-    $order="";
+    $order = "";
     if (empty($_GET['buscarNombre']) == false) {
         $where = $where . " and nombre like'%" . $_GET['buscarNombre'] . "%' ";
     }
@@ -34,8 +34,8 @@
     if (empty($_GET['buscarExistencia']) == false) {
         $where = $where . " and unidadesEnExistencia='" . $_GET['buscarExistencia'] . "' ";
     }
-    if( isset($_GET['columna'])){
-        $order=" order by  ".$_GET['columna']." ".$_GET['tipo'];
+    if (isset($_GET['columna'])) {
+        $order = " order by  " . $_GET['columna'] . " " . $_GET['tipo'];
     }
     ?>
     <div class="container mt-5">
@@ -131,40 +131,21 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Nombre
-                                    <div class="float-right">
-                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'nombre' && $_GET['tipo'] == 'asc') : ?>
-                                            <i class="fa fa-arrow-up text-secondary"></i>
-                                        <?php else : ?>
-                                            <a href="tutorialMysql.php?columna=nombre&tipo=asc"><i class="fa fa-arrow-up"></i></a>
-                                        <?php endif; ?>
-
-                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'nombre' && $_GET['tipo'] == 'desc') : ?>
-                                            <i class="fa fa-arrow-down text-secondary"></i>
-                                        <?php else : ?>
-                                            <a href="tutorialMysql.php?columna=nombre&tipo=desc"><i class="fa fa-arrow-down"></i></a>
-                                        <?php endif; ?>
-                                    </div>
-
+                                <?php
+                                    $columna=isset($_GET['columna'])?$_GET['columna']:null;
+                                    $tipo=isset($_GET['tipo'])?$_GET['tipo']:null;
+                                    ?>
+                                <?php ordenador($columna,'nombre',$tipo); ?>
                                 </th>
                                 <th scope="col" style="min-width: 120px;">Precio
-                                    <div class="float-right">
-                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'precioVenta' && $_GET['tipo'] == 'asc') : ?>
-                                            <i class="fa fa-arrow-up text-secondary"></i>
-                                        <?php else : ?>
-                                            <a href="tutorialMysql.php?columna=precioVenta&tipo=asc"><i class="fa fa-arrow-up"></i></a>
-                                        <?php endif; ?>
-
-                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'precioVenta' && $_GET['tipo'] == 'desc') : ?>
-                                            <i class="fa fa-arrow-down text-secondary"></i>
-                                        <?php else : ?>
-                                            <a href="tutorialMysql.php?columna=precioVenta&tipo=desc"><i class="fa fa-arrow-down"></i></a>
-                                        <?php endif; ?>
-                                    </div>
-
-
+                                <?php ordenador($columna,'precioVenta',$tipo); ?>
                                 </th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">Existencia</th>
+                                <th scope="col">Categoria
+                                <?php ordenador($columna,'categoria',$tipo); ?>
+                                </th>
+                                <th scope="col">Existencia
+                                <?php ordenador($columna,'unidadesEnExistencia',$tipo); ?>
+                                </th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -216,7 +197,27 @@
             });
         });
     </script>
+    <?php
+    function ordenador($columnaSeleccionada,$columnaValor,$tipoOrdenamiento)
+    {
+        ?>
+        <div class="float-right">
+            <?php if (isset($columnaSeleccionada) && $columnaSeleccionada == $columnaValor && $tipoOrdenamiento == 'asc') : ?>
+                <i class="fa fa-arrow-up text-secondary"></i>
+            <?php else : ?>
+                <a href="tutorialMysql.php?columna=<?php echo $columnaValor; ?>&tipo=asc"><i class="fa fa-arrow-up"></i></a>
+            <?php endif; ?>
 
+            <?php if (isset($columnaSeleccionada) && $columnaSeleccionada == $columnaValor && $tipoOrdenamiento == 'desc') : ?>
+                <i class="fa fa-arrow-down text-secondary"></i>
+            <?php else : ?>
+                <a href="tutorialMysql.php?columna=<?php echo $columnaValor; ?>&tipo=desc"><i class="fa fa-arrow-down"></i></a>
+            <?php endif; ?>
+        </div>
+
+    <?php
+    }
+    ?>
 </body>
 
 </html>
