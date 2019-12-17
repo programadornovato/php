@@ -68,6 +68,25 @@
 
                     }
                 }
+                $sqlCuenta="SELECT COUNT(*) as cantidad FROM `productos` $where; ";
+                $resultSetCuenta=mysqli_query($conexion,$sqlCuenta);
+                $rowCuenta=mysqli_fetch_assoc($resultSetCuenta);
+                $totalRegistros=$rowCuenta['cantidad'];
+                $elementosPorPagina=10;
+
+                $totalPaginas= ceil($totalRegistros/$elementosPorPagina);
+
+                $paginaSeleccionada=isset($_GET['pagina'])?$_GET['pagina']:false;
+
+                if($paginaSeleccionada==false){
+                    $inicioLimite=0;
+                    $paginaSeleccionada=1;
+                }
+                else{
+                    $inicioLimite=($paginaSeleccionada-1) * $elementosPorPagina;
+                }
+
+                $limit=" LIMIT  $inicioLimite,$elementosPorPagina ";
                 $sql = "SELECT 
                 `id`, 
                 `nombre`, 
@@ -80,6 +99,7 @@
                 FROM `productos`
                 $where
                 $order
+                $limit
                 ;
                 ";
                 $resultSet = mysqli_query($conexion, $sql);
@@ -172,6 +192,23 @@
                             ?>
                         </tbody>
                     </table>
+                    <?php if($totalPaginas>0): ?>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <?php if($paginaSeleccionada!=1): ?>
+                            <li class="page-item"><a class="page-link" href="tutorialMysql.php?pagina=<?php echo ($paginaSeleccionada-1) ?>">Previous</a></li>
+                            <?php endif; ?>
+
+                            <?php for($i=1;$i<=$totalPaginas;$i++): $activo=($paginaSeleccionada==$i)?" active ":" "; ?>
+                                <li class="page-item <?php echo $activo; ?>"><a class="page-link" href="tutorialMysql.php?pagina=<?php echo $i ?>"><?php echo $i ?></a></li>
+                            <?php endfor; ?>
+
+                            <?php if($paginaSeleccionada!=$totalPaginas): ?>
+                                <li class="page-item"><a class="page-link" href="tutorialMysql.php?pagina=<?php echo ($paginaSeleccionada+1) ?>">Next</a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </nav>
+                    <?php endif; ?>
                 </form>
             </div>
         </div>
@@ -183,10 +220,6 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function() {
-            $('#tablaAutos').DataTable({
-                'searching': false,
-                'ordering': false
-            });
             $('.borrar').click(function(evento) {
                 evento.preventDefault();
                 var resultado = confirm('¡¡¡Esclavo!!!!¿Estas seguro que quieres borrar este registro?????');
