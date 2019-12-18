@@ -21,15 +21,22 @@
                 if ($conexion == false) {
                     echo "Error conexion" . mysqli_error($conexion);
                 }
-                if (isset($_GET['guardar'])) {
+                if (isset($_REQUEST['guardar'])) {
+
+                    $subirFoto=isset($_FILES['foto'])?$_FILES['foto']:null;
+                    if($subirFoto){
+                        $nombreFoto=$subirFoto['name'];
+                        move_uploaded_file($subirFoto['tmp_name'],'fotos/'.$nombreFoto);
+                    }
                     $sql = "UPDATE productos SET
-                    nombre='" . $_GET['nombre'] . "',
-                    precioCompra='" . $_GET['precioCompra'] . "',
-                    precioVenta='" . $_GET['precioVenta'] . "',
-                    fechaCompra='" . $_GET['fechaCompra'] . "',
-                    categoria='" . $_GET['categoria'] . "',
-                    unidadesEnExistencia='" . $_GET['unidadesEnExistencia'] . "'
-                    WHERE id='" . $_GET['id'] . "';
+                    nombre='" . $_REQUEST['nombre'] . "',
+                    precioCompra='" . $_REQUEST['precioCompra'] . "',
+                    precioVenta='" . $_REQUEST['precioVenta'] . "',
+                    fechaCompra='" . $_REQUEST['fechaCompra'] . "',
+                    categoria='" . $_REQUEST['categoria'] . "',
+                    unidadesEnExistencia='" . $_REQUEST['unidadesEnExistencia'] . "',
+                    foto='" . $nombreFoto . "'
+                    WHERE id='" . $_REQUEST['id'] . "';
                     ";
                     $resultado = mysqli_query($conexion, $sql);
                     if ($resultado == false) {
@@ -62,16 +69,16 @@
                     `precioVenta`, 
                     `fechaCompra`, 
                     `categoria`, 
-                    `unidadesEnExistencia` 
+                    `unidadesEnExistencia`,
+                    foto
                     FROM `productos`
-                    WHERE id='" . $_GET['id'] . "'
+                    WHERE id='" . $_REQUEST['id'] . "'
                     ;
                     ";
-
                 $resulSet = mysqli_query($conexion, $sql);
                 $row = mysqli_fetch_array($resulSet, MYSQLI_ASSOC);
                 ?>
-                <form>
+                <form method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Nombre</label>
                         <input type="text" class="form-control" name="nombre" value="<?php echo $row['nombre'] ?>">
@@ -95,6 +102,14 @@
                     <div class="form-group">
                         <label>Existencia</label>
                         <input type="text" class="form-control" name="unidadesEnExistencia" value="<?php echo $row['unidadesEnExistencia'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <?php if(empty($row['foto'])==true): ?>
+                        <label>Foto</label>
+                        <input type="file" class="form-control" name="foto">
+                        <?php else: ?>
+                        <img src="fotos/<?php echo $row['foto']; ?>" style="width: 200px;" class="img-thumbnail">
+                        <?php endif; ?>
                     </div>
                     <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                     <button type="submit" name="guardar" class="btn btn-primary">Guardar</button>

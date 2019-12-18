@@ -22,9 +22,15 @@
                 if ($conexion == false) {
                     die("Humano hay un error en ela conexion arreglalo " . mysqli_error($conexion));
                 }
-                if (isset($_GET['guardar'])) {
-                    $sql = "INSERT INTO productos (nombre               ,precioCompra               ,precioVenta               ,fechaCompra               ,categoria               ,unidadesEnExistencia) VALUE
-                                                ('" . $_GET['nombre'] . "','" . $_GET['precioCompra'] . "','" . $_GET['precioVenta'] . "','" . $_GET['fechaCompra'] . "','" . $_GET['categoria'] . "','" . $_GET['unidadesEnExistencia'] . "');";
+                if (isset($_REQUEST['guardar'])) {
+                    $subirFoto=isset($_FILES['foto'])?$_FILES['foto']:null;
+                    if($subirFoto){
+                        $nombreFoto=$subirFoto['name'];
+                        move_uploaded_file($subirFoto['tmp_name'],'fotos/'.$nombreFoto);
+                    }
+
+                    $sql = "INSERT INTO productos (nombre                     ,precioCompra                       ,precioVenta                       ,fechaCompra                       ,categoria                       ,unidadesEnExistencia                        ,foto) VALUE
+                                                ('" . $_REQUEST['nombre'] . "','" . $_REQUEST['precioCompra'] . "','" . $_REQUEST['precioVenta'] . "','" . $_REQUEST['fechaCompra'] . "','" . $_REQUEST['categoria'] . "','" . $_REQUEST['unidadesEnExistencia'] . "','$nombreFoto');";
                     $resultado = mysqli_query($conexion, $sql);
                     if ($resultado == true) {
                         header("Location: tutorialMysql.php");
@@ -41,7 +47,7 @@
                     }
                 }
                 ?>
-                <form>
+                <form method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Nombre</label>
                         <input type="text" class="form-control" name="nombre">
@@ -65,6 +71,10 @@
                     <div class="form-group">
                         <label>Existencia</label>
                         <input type="text" class="form-control" name="unidadesEnExistencia">
+                    </div>
+                    <div class="form-group">
+                        <label>Foto</label>
+                        <input type="file" class="form-control" name="foto">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-secondary" name="guardar">Guardar <i class="fa fa-save"></i> </button>
