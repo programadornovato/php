@@ -33,7 +33,7 @@
                                                 ('" . $_REQUEST['nombre'] . "','" . $_REQUEST['precioCompra'] . "','" . $_REQUEST['precioVenta'] . "','" . $_REQUEST['fechaCompra'] . "','" . $_REQUEST['categoria'] . "','" . $_REQUEST['unidadesEnExistencia'] . "','$nombreFoto');";
                     $resultado = mysqli_query($conexion, $sql);
                     if ($resultado == true) {
-                        header("Location: tutorialMysql.php");
+                        header("Location: editar.php?id=".mysqli_insert_id($conexion));
                     } else {
                         ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
