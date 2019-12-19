@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-12-2019 a las 00:14:57
+-- Tiempo de generación: 19-12-2019 a las 06:29:57
 -- Versión del servidor: 10.2.22-MariaDB-1:10.2.22+maria~bionic
 -- Versión de PHP: 7.3.12-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -172,21 +172,22 @@ INSERT INTO `productos` (`id`, `nombre`, `precioCompra`, `precioVenta`, `fechaCo
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE `usuarios` (
   `id` int(5) NOT NULL,
   `user` varchar(100) NOT NULL DEFAULT '',
-  `pass` varchar(255) NOT NULL DEFAULT ''
+  `pass` varchar(200) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuario` (`id`, `user`, `pass`) VALUES
-(1, 'admin', '123456');
+INSERT INTO `usuarios` (`id`, `user`, `pass`) VALUES
+(1, 'admin', '123456'),
+(2, 'eugenio', '123456');
 
 --
 -- Índices para tablas volcadas
@@ -199,9 +200,9 @@ ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuario`
+-- Indices de la tabla `usuarios`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -215,10 +216,10 @@ ALTER TABLE `productos`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
-ALTER TABLE `usuario`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `usuarios`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -26,7 +26,7 @@
     $where = " where 1=1 ";
     $order = "";
     if (empty($_GET['buscarUser']) == false) {
-        $where = $where . " and user like'%" . $_GET['buscarUser'] . "%' ";
+        $where = $where . " and user ='" . $_GET['buscarUser'] . "' ";
     }
     ?>
     <div class="container">
