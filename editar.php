@@ -22,11 +22,26 @@
                     echo "Error conexion" . mysqli_error($conexion);
                 }
                 if (isset($_REQUEST['guardar'])) {
-
+                    $nombreFoto="";
                     $subirFoto=isset($_FILES['foto'])?$_FILES['foto']:null;
                     if($subirFoto){
-                        $nombreFoto=$subirFoto['name'];
-                        move_uploaded_file($subirFoto['tmp_name'],'fotos/'.$nombreFoto);
+                        $tipoArchivo=$_FILES['foto']['type'];
+                        $permitido=array('image/jpeg','image/gif','image/png');
+                        if( in_array($tipoArchivo,$permitido)==true ){
+                            $nombreFoto=$subirFoto['name'];
+                            move_uploaded_file($subirFoto['tmp_name'],'fotos/'.$nombreFoto);
+                        }
+                        else{
+                            ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                    <img src="images/no-no.gif"> Nel carnal, esa no es una imagen.
+                                </div>
+                            <?php
+                        }
                     }
                     $sql = "UPDATE productos SET
                     nombre='" . $_REQUEST['nombre'] . "',
