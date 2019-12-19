@@ -23,7 +23,7 @@
                     die("Humano hay un error en ela conexion arreglalo " . mysqli_error($conexion));
                 }
                 if (isset($_REQUEST['guardar'])) {
-                    $sql = "INSERT INTO usuario (user                     ,pass                       ) VALUE
+                    $sql = "INSERT INTO usuarios (user                     ,pass                       ) VALUE
                                                 ('" . $_REQUEST['user'] . "','" . $_REQUEST['pass'] . "');";
                     $resultado = mysqli_query($conexion, $sql);
                     if ($resultado == true) {

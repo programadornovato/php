@@ -22,7 +22,7 @@
                     echo "Error conexion" . mysqli_error($conexion);
                 }
                 if (isset($_REQUEST['guardar'])) {
-                    $sql = "UPDATE usuario SET
+                    $sql = "UPDATE usuarios SET
                     user='" . $_REQUEST['user'] . "',
                     pass='" . $_REQUEST['pass'] . "'
                     WHERE id='" . $_REQUEST['id'] . "';
@@ -55,7 +55,7 @@
                     id, 
                     user,
                     pass
-                    FROM usuario
+                    FROM usuarios
                     WHERE id='" . $_REQUEST['id'] . "'
                     ;
                     ";

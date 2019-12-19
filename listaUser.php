@@ -34,7 +34,7 @@
             <div class="col-12">
                 <?php
                 if (isset($_GET['idBorrar'])) {
-                    $sqlBorrar = "DELETE FROM usuario WHERE id='" . $_GET['idBorrar'] . "';";
+                    $sqlBorrar = "DELETE FROM usuarios WHERE id='" . $_GET['idBorrar'] . "';";
                     $resultado = mysqli_query($conexion, $sqlBorrar);
                     if ($resultado) {
                         ?>
@@ -59,7 +59,7 @@
 
                     }
                 }
-                $sqlCuenta="SELECT COUNT(*) as cantidad FROM usuario $where; ";
+                $sqlCuenta="SELECT COUNT(*) as cantidad FROM usuarios $where; ";
                 $resultSetCuenta=mysqli_query($conexion,$sqlCuenta);
                 $rowCuenta=mysqli_fetch_assoc($resultSetCuenta);
                 $totalRegistros=$rowCuenta['cantidad'];
@@ -82,7 +82,7 @@
                 id, 
                 user,
                 pass
-                FROM usuario
+                FROM usuarios
                 $where
                 $order
                 $limit
