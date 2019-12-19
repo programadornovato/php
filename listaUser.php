@@ -29,9 +29,31 @@
         $where = $where . " and user like'%" . $_GET['buscarUser'] . "%' ";
     }
     ?>
-    <div class="container mt-5">
+    <div class="container">
         <div class="row">
             <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">pn</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="tutorialMysql.php">Productos</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="listaUser.php">Usuarios</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <form class="form-inline" action="logout.php" >
+                        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log Out</button>
+                    </form>
+                </nav>
                 <?php
                 if (isset($_GET['idBorrar'])) {
                     $sqlBorrar = "DELETE FROM usuarios WHERE id='" . $_GET['idBorrar'] . "';";
