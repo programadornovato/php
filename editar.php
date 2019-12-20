@@ -24,7 +24,7 @@
                 if (isset($_REQUEST['guardar'])) {
                     $nombreFoto="";
                     $subirFoto=isset($_FILES['foto'])?$_FILES['foto']:null;
-                    if($subirFoto){
+                    if(empty($subirFoto['name'])==false){
                         $tipoArchivo=$_FILES['foto']['type'];
                         $permitido=array('image/jpeg','image/gif','image/png');
                         if( in_array($tipoArchivo,$permitido)==true ){
@@ -43,6 +43,7 @@
                             <?php
                         }
                     }
+                    $id=$_REQUEST['id'];
                     $sql = "UPDATE productos SET
                     nombre='" . $_REQUEST['nombre'] . "',
                     precioCompra='" . $_REQUEST['precioCompra'] . "',
@@ -51,7 +52,7 @@
                     categoria='" . $_REQUEST['categoria'] . "',
                     unidadesEnExistencia='" . $_REQUEST['unidadesEnExistencia'] . "',
                     foto='" . $nombreFoto . "'
-                    WHERE id='" . $_REQUEST['id'] . "';
+                    WHERE id='$id';
                     ";
                     $resultado = mysqli_query($conexion, $sql);
                     if ($resultado == false) {
