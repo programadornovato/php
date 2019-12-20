@@ -24,7 +24,7 @@
                 }
                 if (isset($_REQUEST['guardar'])) {
                     $subirFoto=isset($_FILES['foto'])?$_FILES['foto']:null;
-                    if($subirFoto){
+                    if(empty($subirFoto['name'])==false){
                         $tipoArchivo=$_FILES['foto']['type'];
                         $permitido=array('image/jpeg','image/gif','image/png');
                         if( in_array($tipoArchivo,$permitido)==true ){

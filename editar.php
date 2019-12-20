@@ -43,8 +43,6 @@
                             <?php
                         }
                     }
-                    //$id=mysqli_real_escape_string($conexion,$_REQUEST['id']);
-                    $id=$_REQUEST['id'];
                     $sql = "UPDATE productos SET
                     nombre='" . $_REQUEST['nombre'] . "',
                     precioCompra='" . $_REQUEST['precioCompra'] . "',
@@ -53,9 +51,8 @@
                     categoria='" . $_REQUEST['categoria'] . "',
                     unidadesEnExistencia='" . $_REQUEST['unidadesEnExistencia'] . "',
                     foto='" . $nombreFoto . "'
-                    WHERE id='$id';
+                    WHERE id='" . $_REQUEST['id'] . "';
                     ";
-                    echo $sql;
                     $resultado = mysqli_query($conexion, $sql);
                     if ($resultado == false) {
                         ?>
@@ -80,8 +77,6 @@
                 <?php
                     }
                 }
-                //$id=$_REQUEST['id'];
-                $id=mysqli_real_escape_string($conexion,$_REQUEST['id']);
                 $sql = "SELECT 
                     `id`, 
                     `nombre`, 
@@ -92,10 +87,9 @@
                     `unidadesEnExistencia`,
                     foto
                     FROM `productos`
-                    WHERE id='$id'
+                    WHERE id='" . $_REQUEST['id'] . "'
                     ;
                     ";
-                //echo $sql;
                 $resulSet = mysqli_query($conexion, $sql);
                 $row = mysqli_fetch_array($resulSet, MYSQLI_ASSOC);
                 ?>
