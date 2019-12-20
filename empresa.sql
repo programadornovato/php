@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-12-2019 a las 06:29:57
+-- Tiempo de generación: 20-12-2019 a las 00:04:57
 -- Versión del servidor: 10.2.22-MariaDB-1:10.2.22+maria~bionic
 -- Versión de PHP: 7.3.12-1+ubuntu18.04.1+deb.sury.org+1
 
