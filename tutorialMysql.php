@@ -32,7 +32,9 @@
         $where = $where . " and categoria='" . $_GET['buscarCategoria'] . "' ";
     }
     if (empty($_GET['buscarExistencia']) == false) {
-        $where = $where . " and unidadesEnExistencia='" . $_GET['buscarExistencia'] . "' ";
+        //$existencias=str_replace("'","\'",$_GET['buscarExistencia']);
+        $existencias=mysqli_real_escape_string($conexion,$_GET['buscarExistencia']);
+        $where = $where . " and unidadesEnExistencia='" . $existencias . "' ";
     }
     if (isset($_GET['columna'])) {
         $order = " order by  " . $_GET['columna'] . " " . $_GET['tipo'];
@@ -125,7 +127,7 @@
                 ;
                 ";
                 $resultSet = mysqli_query($conexion, $sql);
-
+                echo $sql;
                 ?>
                 <form>
                     <table class="table table-striped" id="tablaAutos">
