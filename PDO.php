@@ -13,17 +13,8 @@
 
 <body>
     <?php
-    
-    try {
-        //$conexion=new PDO("mysql:host=localhost;database=empresa","eugenio","123456");
-        $conexion=new PDO("sqlite:miDB.sqlite");
-    } catch (\Throwable $th) {
-        die("Error de conexion ".$th->getMessage());
-    }
-    finally{
-        $conexion=null;
-    }
-    echo "Conexion existosa";
+    include_once "sqlite.php";
+    $sqlite=new sqlite();
     ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
