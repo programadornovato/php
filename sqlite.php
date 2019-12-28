@@ -23,10 +23,29 @@
             );";
             try {
                 self::$db->exec($query);
-                echo "Se creo la tabla productos de forma existosa";
             } catch (\Throwable $th) {
                 echo "Error al crear la tabla productos".$th->getMessage();
             }
+        }
+        public function insertar($producto=array()){
+            //$nombre=$producto['nombre'];
+            extract($producto);
+            $query="INSERT INTO productos 
+            (nombre, precio, categoria, existencia, foto)VALUES 
+            (:nombre,:precio,:categoria,:existencia,:foto);";
+            $sentecia=self::$db->prepare($query);
+            $sentecia->bindParam(':nombre',$nombre);
+            $sentecia->bindParam(':precio',$precio);
+            $sentecia->bindParam(':categoria',$categoria);
+            $sentecia->bindParam(':existencia',$existencia);
+            $sentecia->bindParam(':foto',$foto);
+            if($sentecia->execute()==true){
+                return true;
+            }
+            else{
+                return true;
+            }
+
         }
     }
 ?>
