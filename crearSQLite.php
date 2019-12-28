@@ -28,7 +28,7 @@
                     );
                     $resultado = $sqlite->insertar($producto);
                     if ($resultado == true) {
-                        //header("Location: PDO.php");
+                        header("Location: PDO.php");
                     } else {
                     ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
