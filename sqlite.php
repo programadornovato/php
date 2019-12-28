@@ -45,7 +45,14 @@
             else{
                 return true;
             }
-
+        }
+        public function leer(){
+            $query="SELECT id, nombre, precio, categoria, existencia, foto
+            FROM productos;";
+            $sentencia=self::$db->query($query);
+            $sentencia->execute();
+            $resultado=$sentencia->fetchAll();
+            return $resultado;
         }
     }
 ?>
