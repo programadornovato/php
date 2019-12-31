@@ -46,9 +46,26 @@
                 return true;
             }
         }
-        public function leer(){
+        public function leer($buscar=array()){
+            $where=" where 1=1 ";
+            if(empty($buscar['id'])==false){
+                $where=$where." and id='".$buscar['id']."' ";
+            }
+            if(empty($buscar['nombre'])==false){
+                $where=$where." and nombre='".$buscar['nombre']."' ";
+            }
+            if(empty($buscar['precio'])==false){
+                $where=$where." and precio='".$buscar['precio']."' ";
+            }
+            if(empty($buscar['categoria'])==false){
+                $where=$where." and categoria='".$buscar['categoria']."' ";
+            }
+            if(empty($buscar['existencia'])==false){
+                $where=$where." and existencia='".$buscar['existencia']."' ";
+            }
             $query="SELECT id, nombre, precio, categoria, existencia, foto
-            FROM productos;";
+            FROM productos
+            $where ;";
             $sentencia=self::$db->query($query);
             $sentencia->execute();
             $resultado=$sentencia->fetchAll();

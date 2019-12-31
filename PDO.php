@@ -10,6 +10,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        input.form-control {
+            font-family: FontAwesome;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,40 +24,51 @@
     ?>
     <div class="container mt-3">
         <div class="row">
-            <div class="col-12">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>nombre</th>
-                            <th>precio</th>
-                            <th>categoria</th>
-                            <th>existencia</th>
-                            <th>foto</th>
-                            <th><a href="crearSQLite.php"><i class="fa fa-plus"></i></a> acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $resultado = $sqlite->leer();
-                        foreach ($resultado as $key => $value) {
-                        ?>
+            <form>
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <td><?php echo $value->id; ?></td>
-                                <td><?php echo $value->nombre; ?></td>
-                                <td><?php echo $value->precio; ?></td>
-                                <td><?php echo $value->categoria; ?></td>
-                                <td><?php echo $value->existencia; ?></td>
-                                <td><?php echo $value->foto; ?></td>
-                                <td><i class="fa fa-edit mr-2"></i><i class="fa fa-trash"></i></td>
+                                <th><input type="text" name="id" class="form-control" value="<?php echo $_REQUEST['id'] ?? ''; ?>" placeholder="&#xf002;"></th>
+                                <th><input type="text" name="nombre" class="form-control" value="<?php echo $_REQUEST['nombre'] ?? ''; ?>" placeholder="&#xf002;"></th>
+                                <th><input type="text" name="precio" class="form-control" value="<?php echo $_REQUEST['precio'] ?? ''; ?>" placeholder="&#xf002;"></th>
+                                <th><input type="text" name="categoria" class="form-control" value="<?php echo $_REQUEST['categoria'] ?? ''; ?>" placeholder="&#xf002;"></th>
+                                <th><input type="text" name="existencia" class="form-control" value="<?php echo $_REQUEST['existencia'] ?? ''; ?>" placeholder="&#xf002;"></th>
+                                <th><button type="submit" class="btn btn-primary">Buscar</button></th>
+                                <th></th>
                             </tr>
+                            <tr>
+                                <th>id</th>
+                                <th>nombre</th>
+                                <th>precio</th>
+                                <th>categoria</th>
+                                <th>existencia</th>
+                                <th>foto</th>
+                                <th><a href="crearSQLite.php"><i class="fa fa-plus"></i></a> acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $resultado = $sqlite->leer($_REQUEST);
+                            foreach ($resultado as $key => $value) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $value->id; ?></td>
+                                    <td><?php echo $value->nombre; ?></td>
+                                    <td><?php echo $value->precio; ?></td>
+                                    <td><?php echo $value->categoria; ?></td>
+                                    <td><?php echo $value->existencia; ?></td>
+                                    <td><?php echo $value->foto; ?></td>
+                                    <td><i class="fa fa-edit mr-2"></i><i class="fa fa-trash"></i></td>
+                                </tr>
 
-                        <?php
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
         </div>
     </div>
     <!-- Optional JavaScript -->
