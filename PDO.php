@@ -44,7 +44,7 @@
                                 <th>categoria</th>
                                 <th>existencia</th>
                                 <th>foto</th>
-                                <th><a href="crearSQLite.php"><i class="fa fa-plus"></i></a> acciones</th>
+                                <th><a href="crearSQLite.php"><i class="fa fa-plus"></i></a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,7 +59,10 @@
                                     <td><?php echo $value->categoria; ?></td>
                                     <td><?php echo $value->existencia; ?></td>
                                     <td><?php echo $value->foto; ?></td>
-                                    <td><i class="fa fa-edit mr-2"></i><i class="fa fa-trash"></i></td>
+                                    <td style="min-width: 100px;">
+                                        <a href="editarPDO.php?id=<?php echo $value->id; ?>"><i class="fa fa-edit mr-2"></i></a>
+                                        <i class="fa fa-trash"></i>
+                                    </td>
                                 </tr>
 
                             <?php

@@ -43,7 +43,26 @@
                 return true;
             }
             else{
+                return false;
+            }
+        }
+        public function editar($producto=array()){
+            extract($producto);
+            $query="UPDATE productos SET
+            nombre=:nombre, precio=:precio, categoria=:categoria, existencia=:existencia, foto=:foto
+            WHERE id=:id;";
+            $sentecia=self::$db->prepare($query);
+            $sentecia->bindParam(':nombre',$nombre);
+            $sentecia->bindParam(':precio',$precio);
+            $sentecia->bindParam(':categoria',$categoria);
+            $sentecia->bindParam(':existencia',$existencia);
+            $sentecia->bindParam(':foto',$foto);
+            $sentecia->bindParam(':id',$id);
+            if($sentecia->execute()==true){
                 return true;
+            }
+            else{
+                return false;
             }
         }
         public function leer($buscar=array()){
