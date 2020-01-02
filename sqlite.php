@@ -48,41 +48,32 @@
         }
         public function leer($buscar=array()){
             $where=" where 1=1 ";
+            $arregloParametros=array();
             if(empty($buscar['id'])==false){
                 $where=$where." and id=:id ";
+                $arregloParametros[':id']=$buscar['id'];
             }
             if(empty($buscar['nombre'])==false){
                 $where=$where." and nombre=:nombre ";
+                $arregloParametros[':nombre']=$buscar['nombre'];
             }
             if(empty($buscar['precio'])==false){
                 $where=$where." and precio=:precio ";
+                $arregloParametros[':precio']=$buscar['precio'];
             }
             if(empty($buscar['categoria'])==false){
                 $where=$where." and categoria=:categoria ";
+                $arregloParametros[':categoria']=$buscar['categoria'];
             }
             if(empty($buscar['existencia'])==false){
                 $where=$where." and existencia=:existencia ";
+                $arregloParametros[':existencia']=$buscar['existencia'];
             }
             $query="SELECT id, nombre, precio, categoria, existencia, foto
             FROM productos
             $where ;";
             $sentencia=self::$db->prepare($query);
-            if(empty($buscar['id'])==false){
-                $sentencia->bindParam(":id",$buscar['id']);
-            }
-            if(empty($buscar['nombre'])==false){
-                $sentencia->bindParam(":nombre",$buscar['nombre']);
-            }
-            if(empty($buscar['precio'])==false){
-                $sentencia->bindParam(":precio",$buscar['precio']);
-            }
-            if(empty($buscar['categoria'])==false){
-                $sentencia->bindParam(":categoria",$buscar['categoria']);
-            }
-            if(empty($buscar['existencia'])==false){
-                $sentencia->bindParam(":existencia",$buscar['existencia']);
-            }
-            $sentencia->execute();
+            $sentencia->execute($arregloParametros);
             $resultado=$sentencia->fetchAll();
             return $resultado;
         }
