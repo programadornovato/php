@@ -65,6 +65,18 @@
                 return false;
             }
         }
+        public function borrar($id){
+            $query="DELETE FROM productos 
+            WHERE id=:id;";
+            $sentecia=self::$db->prepare($query);
+            $sentecia->bindParam(':id',$id);
+            if($sentecia->execute()==true){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
         public function leer($buscar=array()){
             $where=" where 1=1 ";
             $arregloParametros=array();

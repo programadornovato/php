@@ -25,6 +25,20 @@
     <div class="container mt-3">
         <div class="row">
             <form>
+                <?php
+                    if(isset($_REQUEST['idBorrar'])){
+                        $res=$sqlite->borrar($_REQUEST['idBorrar']);
+                        ?>
+                            <div class="alert alert-<?php echo $res?"primary":"danger"; ?> alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <?php echo $res?"Registro borrado":"Registro no borrado"; ?>
+                            </div>
+                        <?php
+                    }
+                ?>
                 <div class="col-12">
                     <table class="table table-striped">
                         <thead>
@@ -61,7 +75,7 @@
                                     <td><?php echo $value->foto; ?></td>
                                     <td style="min-width: 100px;">
                                         <a href="editarPDO.php?id=<?php echo $value->id; ?>"><i class="fa fa-edit mr-2"></i></a>
-                                        <i class="fa fa-trash"></i>
+                                        <a href="PDO.php?idBorrar=<?php echo $value->id; ?>" class="borrar"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
                                 </tr>
 
@@ -79,6 +93,17 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $(".borrar").click(function (e) { 
+                e.preventDefault();
+                var res=confirm("Realmente desea borrar el registro?");
+                if(res==true){
+                    location.href=$(this).attr("href");
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
