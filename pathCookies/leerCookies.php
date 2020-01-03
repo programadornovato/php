@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>cookies</title>
+    <title>Leer Cookies</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,24 +12,17 @@
 </head>
 
 <body>
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-primary" role="alert">
-                    <?php
-                        $res=setcookie(
-                            "prueba",//Nombre
-                            "Esta es una cookie de prueba",//Valor
-                            time()-1,//Ahora + 3000 seg
-                            "",//path
-                            "192.168.8.101"//dominio
-                        );
-                        echo $res?'Se guardo la cookie':'No se guardo la cookie';
-                    ?>
-                </div>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-<?php echo isset($_COOKIE['prueba'])?"primary":"danger"; ?>" role="alert">
+                <?php
+                    echo $_COOKIE['prueba']??'La cookie prueba no existe';
+                ?>
             </div>
         </div>
     </div>
+</div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
