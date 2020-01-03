@@ -15,7 +15,7 @@
 <div class="container mt-3">
     <div class="row">
         <div class="col-12">
-            <div class="alert alert-primary" role="alert">
+            <div class="alert alert-<?php echo isset($_COOKIE['prueba'])?"primary":"danger"; ?>" role="alert">
                 <?php
                     echo $_COOKIE['prueba']??'La cookie prueba no existe';
                 ?>
