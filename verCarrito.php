@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>carrito</title>
+    <title>Ver carrito</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,44 +18,40 @@
             <div class="col-12">
                 <form method="POST">
                     <table class="table table-striped">
-                        <thead class="thead-inverse">
+                        <thead>
                             <tr>
                                 <th>Nombre</th>
                                 <th>
-                                    <button type="submit" name="agregar" class="btn btn-primary">
-                                        <i class="fa fa-cart-plus"></i>
-                                    </button>
-                                    <a href="verCarrito.php" class="btn btn-secondary" >
-                                        <i class="fa fa-cart-arrow-down"></i>
+                                    <a href="carrito.php" class="btn btn-secondary">
+                                        <i class="fa fa-backward"></i>
                                     </a>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            include_once "db_empresa.php";
-                            $con = mysqli_connect($db_host, $db_user, $db_pass, $db_database);
-                            $query = "SELECT nombre FROM productos LIMIT 10;";
-                            $res = mysqli_query($con, $query);
-                            if(isset($_REQUEST['producto'])){
-                                setcookie("producto",serialize($_REQUEST['producto']),time()+3000);
+                            $listaProductos = unserialize($_COOKIE['producto']);
+                            if(isset($_REQUEST['borrar'])){
+                                unset($listaProductos[$_REQUEST['borrar']]);
+                                setcookie('producto',serialize($listaProductos),time()+30000);
                             }
-                            while ($row = mysqli_fetch_assoc($res)) {
-                                if(isset($_REQUEST['producto'])){
-                                    $esta=in_array($row['nombre'],$_REQUEST['producto']);
-                                }else{
-                                    $listaProducto=unserialize($_COOKIE['producto']);
-                                    $esta=in_array($row['nombre'],$listaProducto);
-                                }
+                            foreach ($listaProductos as $key => $value) {
                             ?>
                                 <tr>
-                                    <td><?php echo $row['nombre']; ?></td>
-                                    <td><input type="checkbox" name="producto[]" value="<?php echo $row['nombre']; ?>" <?php echo $esta?" checked='checked' ":" "; ?> ></td>
+                                    <td><?php echo $value; ?></td>
+                                    <td>
+                                        <button type="submit" name="borrar" value="<?php echo $key; ?>" class="btn btn-danger borrar" >
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
                                 </tr>
+
                             <?php
                             }
                             ?>
                         </tbody>
+
+
                     </table>
                 </form>
             </div>
@@ -66,6 +62,19 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("form").submit(function () { 
+                
+                var res=confirm("¿Realmente desea borrar este producto del carrito?");
+                if(res==true){
+                    return;
+                }else{
+                    return false;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
