@@ -37,13 +37,33 @@
                         </button>
                         <?php echo $res ? "Archivo subido exitosamente" : "Error al subir archivo"; ?>
                     </div>
+                    <?php
+                    if (file_exists($destino) == true) {
+                        include_once "db_empresa.php";
+                        $con = mysqli_connect($db_host, $db_user, $db_pass, $db_database);
+                        $archivo = fopen($destino, "r");
+                        $query = "INSERT INTO productos 
+                    (nombre,precioCompra,precioVenta,fechaCompra,categoria,unidadesEnExistencia,foto) values ";
+                        $i=0;
+                        while (($columna = fgetcsv($archivo)) != false) {
+                            if($i>0){
+                                $query=$query."( '" . $columna[1] . "','" . $columna[2] . "','" . $columna[3] . "','" . $columna[4] . "','" . $columna[5] . "','" . $columna[6] . "','" . $columna[7] . "'),";
+                            }
+                            $i++;
+                        }
+                        $query = substr($query, 0, -1);
+                        echo $query;
+                        $resultado = mysqli_query($con, $query);
+                    ?>
+                        <div class="alert alert-<?php echo $resultado ? "primary" : "danger"; ?> alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <?php echo $resultado ? "Importacion exitosa" : "Error " . mysqli_error($con); ?>
+                        </div>
                 <?php
-                if( file_exists($destino)==true ){
-                    $archivo=fopen($destino,"r");
-                    while( ($columna=fgetcsv($archivo))!=false ){
-                        echo $columna[0]."-----".$columna[1]."-----".$columna[2]."-----".$columna[3]."-----".$columna[4]."-----".$columna[5]."-----".$columna[6]."-----".$columna[7]."<br>";
                     }
-                }
                 }
                 ?>
             </div>
