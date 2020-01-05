@@ -1,0 +1,18 @@
+id,nombre,precioCompra,precioVenta,fechaCompra,categoria,unidadesEnExistencia,foto
+2,Cerveza tibetana Barley,19,20.9,2015-10-11,Bebidas,17,
+3,Sirope de regaliz,10,11,2015-10-12,Condimentos,13,
+4,Especias Cajun del chef Anton,22,24.2,2015-10-13,Condimentos,53,virusgallego.jpg
+5,Mezcla Gumbo del chef Anton,21.35,23.485,2015-10-14,Condimentos,0,
+6,Mermelada de grosellas de la abuela,25,27.5,2015-10-15,Condimentos,120,noMeBorres.php
+7,Peras secas orgánicas del tío Bob,30,33,2015-10-16,Frutas/Verduras,15,
+8,Salsa de arándanos Northwoods,40,44,2015-10-17,Condimentos,6,
+10,Pez espada,31,34.1,2015-10-19,Pescado/Marisco,31,
+11,Queso Cabrales,21,23.1,2015-10-20,Lácteos,22,
+12,Queso Manchego La Pastora,38,41.8,2015-10-21,Lácteos,86,
+13,Algas Konbu,6,6.6,2015-10-22,Pescado/Marisco,24,
+14,Cuajada de judías,23.25,25.575,2015-10-23,Frutas/Verduras,35,
+15,Salsa de soja baja en sodio,15.5,17.05,2015-10-24,Condimentos,39,
+16,Postre de merengue Pavlova,17.45,19.195,2015-10-25,Repostería,29,
+17,Cordero Alice Springs,39,42.9,2015-10-26,Carnes,0,
+18,Langostinos tigre Carnarvon,62.5,68.75,2015-10-27,Pescado/Marisco,42,
+19,Pastas de té de chocolate,9.2,10.12,2015-10-28,Repostería,25,
