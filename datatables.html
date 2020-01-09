@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>datatables</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+    <link rel="stylesheet" href="css/editor.dataTables.min.css">
+    
+    
+</head>
+
+<body>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped" id="productos">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio de compra</th>
+                            <th>Fecha de compra</th>
+                            <th>Categoria</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio de compra</th>
+                            <th>Fecha de compra</th>
+                            <th>Categoria</th>
+                        </tr>
+
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+    <script src="js/dataTables.editor.min.js"></script>
+    <script>
+        var editor;
+        $(document).ready(function () {
+            editor=new $.fn.dataTable.Editor({
+                ajax:"controllers/productos.php",
+                table:"#productos",
+                fields:[
+                    {
+                        label:"Nombre",
+                        name:"nombre"
+                    },
+                    {
+                        label:"Precio de compra",
+                        name:"precioCompra"
+                    },
+                    {
+                        label:"Fecha de compra",
+                        name:"fechaCompra"
+                    },
+                    {
+                        label:"Categoria",
+                        name:"categoria"
+                    }
+                ]
+            });
+            $("#productos").DataTable({
+                dom:"Bfrtip",
+                ajax:"controllers/productos.php",
+                columns:[
+                    {data:"nombre"},
+                    {data:"precioCompra"},
+                    {data:"fechaCompra"},
+                    {data:"categoria"}
+                ],
+                select:true,
+                buttons:[
+                    {extend:"create",editor:editor},
+                    {extend:"edit",editor:editor},
+                    {extend:"remove",editor:editor},
+                ]
+            });
+        });
+    </script>
+</body>
+
+</html>
