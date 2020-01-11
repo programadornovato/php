@@ -127,7 +127,7 @@
                 ;
                 ";
                 $resultSet = mysqli_query($conexion, $sql);
-                echo $sql;
+                //echo $sql;
                 ?>
                 <form>
                     <table class="table table-striped" id="tablaAutos">
@@ -205,6 +205,7 @@
                                     <td><?php echo $row['categoria']; ?></td>
                                     <td><?php echo $row['unidadesEnExistencia']; ?></td>
                                     <td>
+                                        <a href="pdf.php?id=<?php echo $row['id'] ?>" target="blank" ><i class="fa fa-file-pdf-o mr-2"></i></a>
                                         <a href="editar.php?id=<?php echo $row['id'] ?>"><i class="fa fa-edit mr-2"></i></a>
                                         <a href="tutorialMysql.php?idBorrar=<?php echo $row['id'] ?>" class="borrar"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
